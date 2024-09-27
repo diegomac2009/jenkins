@@ -198,6 +198,8 @@ def sumarBorde(matriz):
     return suma
 
 # Ejercicio 12: Suma de esquinas
+
+#PRobando de nuevo 
 @app.route('/sumaEsquinas', methods=['GET', 'POST'])
 def suma_esquinas_endpoint():
     if request.method == 'POST':
