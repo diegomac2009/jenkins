@@ -3,20 +3,20 @@ pipeline {
     stages {
         stage('Build') {
             when {
-                branch 'Staging'  // Solo ejecuta este stage en la rama 'develop'
+                branch 'Staging'  // Solo ejecuta este stage en la rama 'Staging'
             }
             steps {
                 echo 'Staging...'
-                // Aquí puedes agregar comandos como `sh 'npm install'`
+                //
             }
         }
         stage('Tests') {
             when {
-                branch 'Testing'  // Solo ejecuta este stage en la rama 'feature/test'
+                branch 'Testing'  // Solo ejecuta este stage en la rama 'Testing'
             }
             steps {
                 echo 'Testing...'
-                // Puedes ejecutar tus tests, ej. `sh 'npm test'`
+                // 
             }
         }
         stage('Deploy') {
@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying main...'
-                // Despliegue, ej. `sh 'scp file user@server:/path'`
+                // 
             }
         }
     }
