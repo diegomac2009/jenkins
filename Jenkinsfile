@@ -39,8 +39,8 @@ pipeline {
             steps {
                 echo 'Deploying in main...'
                 sh 'echo "Se hizo un cambio en la rama main a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
-                echo "GIT_BRANCH: ${env.GIT_BRANCH}"    // Nombre de la rama
-                echo "GIT_COMMIT: ${env.GIT_COMMIT}"    // Hash del commit actual
+                sh 'echo "GIT_BRANCH: ${env.GIT_BRANCH}"  >> /var/jenkins_home/jenkins_pipeline.log'  // Nombre de la rama
+                sh 'echo "GIT_COMMIT: ${env.GIT_COMMIT}"  >> /var/jenkins_home/jenkins_pipeline.log'   // Hash del commit actual
             }
         }
     }
