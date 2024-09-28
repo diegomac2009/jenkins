@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Aquí puedes agregar comandos como `sh 'npm install'`
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Puedes ejecutar tus tests, ej. `sh 'npm test'`
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Despliegue, ej. `sh 'scp file user@server:/path'`
+            }
+        }
+    }
+}
