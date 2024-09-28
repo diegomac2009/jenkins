@@ -2,18 +2,27 @@ pipeline {
     agent any
     stages {
         stage('Build') {
+            when {
+                branch 'develop'  // Solo ejecuta este stage en la rama 'develop'
+            }
             steps {
                 echo 'Building...'
                 // Aquí puedes agregar comandos como `sh 'npm install'`
             }
         }
         stage('Tests') {
+            when {
+                branch 'feature/test'  // Solo ejecuta este stage en la rama 'feature/test'
+            }
             steps {
                 echo 'Testing...'
                 // Puedes ejecutar tus tests, ej. `sh 'npm test'`
             }
         }
         stage('Deploy') {
+            when {
+                branch 'main'  // Solo ejecuta este stage en la rama 'main'
+            }
             steps {
                 echo 'Deploying...'
                 // Despliegue, ej. `sh 'scp file user@server:/path'`
