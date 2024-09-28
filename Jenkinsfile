@@ -4,7 +4,7 @@ pipeline {
         stage('Show Branch Variables') {
             steps {
                 script {
-                    // Imprime las variables relacionadas con la rama
+                    // Imprime las variables relacionadas con la rama para confirmar el valor correcto
                     echo "GIT_BRANCH: ${env.GIT_BRANCH}"    // Nombre de la rama
                     echo "GIT_COMMIT: ${env.GIT_COMMIT}"    // Hash del commit actual
                 }
@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/Staging'  // Solo ejecuta este stage en la rama 'Staging'
+                    return env.GIT_BRANCH == 'Staging' || env.GIT_BRANCH == 'origin/Staging'  // Ajusta según el valor de GIT_BRANCH
                 }
             }
             steps {
@@ -23,7 +23,7 @@ pipeline {
         stage('Tests') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/Testing'  // Solo ejecuta este stage en la rama 'Testing'
+                    return env.GIT_BRANCH == 'Testing' || env.GIT_BRANCH == 'origin/Testing'  // Ajusta según el valor de GIT_BRANCH
                 }
             }
             steps {
@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/main'  // Solo ejecuta este stage en la rama 'main'
+                    return env.GIT_BRANCH == 'main' || env.GIT_BRANCH == 'origin/main'  // Ajusta según el valor de GIT_BRANCH
                 }
             }
             steps {
