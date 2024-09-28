@@ -24,7 +24,7 @@ pipeline {
                 branch 'main'  // Solo ejecuta este stage en la rama 'main'
             }
             steps {
-                echo 'Deploying main...'
+                echo 'Deploying main  ...'
                  // Guarda un mensaje en un archivo de log en el servidor Linux
                 sh 'echo "Se hizo un cambio en la rama main a las $(date) " >> /var/jenkins_home/jenkins_pipeline.log'
             }
