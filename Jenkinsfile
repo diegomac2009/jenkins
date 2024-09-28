@@ -33,14 +33,15 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'main' || env.GIT_BRANCH == 'origin/main'  // Ajusta según el valor de GIT_BRANCH
+                    return env.GIT_BRANCH == 'main' || env.GIT_BRANCH == 'origin/main'  // Solo ejecuta este stage en la rama 'main'
                 }
             }
             steps {
                 echo 'Deploying in main...'
                 sh 'echo "Se hizo un cambio en la rama main a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
-                sh 'echo "GIT_BRANCH: ${env.GIT_BRANCH}" >> /var/jenkins_home/jenkins_pipeline.log'
-                sh 'echo "GIT_COMMIT: ${env.GIT_COMMIT}" >> /var/jenkins_home/jenkins_pipeline.log'
+                // Usar $GIT_BRANCH y $GIT_COMMIT en lugar de ${env.GIT_BRANCH}
+                sh 'echo "GIT_BRANCH: $GIT_BRANCH" >> /var/jenkins_home/jenkins_pipeline.log'
+                sh 'echo "GIT_COMMIT: $GIT_COMMIT" >> /var/jenkins_home/jenkins_pipeline.log'
             }
         }
     }
