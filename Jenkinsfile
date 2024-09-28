@@ -1,32 +1,36 @@
 pipeline {
     agent any
     stages {
+        stage('Show Branch') {
+            steps {
+                script {
+                    echo "Current branch: ${env.BRANCH_NAME}"
+                }
+            }
+        }
         stage('Build') {
             when {
-                branch 'Staging'  // Solo ejecuta este stage en la rama 'Staging'
+                branch 'Staging'
             }
             steps {
                 echo 'Staging...'
-                //
             }
         }
         stage('Tests') {
             when {
-                branch 'Testing'  // Solo ejecuta este stage en la rama 'Testing'
+                branch 'Testing'
             }
             steps {
                 echo 'Testing...'
-                // 
             }
         }
         stage('Deploy') {
             when {
-                branch 'main'  // Solo ejecuta este stage en la rama 'main'
+                branch 'main'
             }
             steps {
-                echo 'Deploying main  ...'
-                 // Guarda un mensaje en un archivo de log en el servidor Linux
-                sh 'echo "Se hizo un cambio en la rama main a las $(date) " >> /var/jenkins_home/jenkins_pipeline.log'
+                echo 'Deploying main...'
+                sh 'echo "Se hizo un cambio en la rama main a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
             }
         }
     }
