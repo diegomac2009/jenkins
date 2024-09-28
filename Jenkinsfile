@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying in main...'
-                sh 'echo "Se hizo un cambio en la rama main a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
+                sh 'echo "Se hizo un cambio en la rama main nuevamente a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
                 // Usar $GIT_BRANCH y $GIT_COMMIT en lugar de ${env.GIT_BRANCH}
                 sh 'echo "GIT_BRANCH: $GIT_BRANCH" >> /var/jenkins_home/jenkins_pipeline.log'
                 sh 'echo "GIT_COMMIT: $GIT_COMMIT" >> /var/jenkins_home/jenkins_pipeline.log'
