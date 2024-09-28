@@ -13,34 +13,34 @@ pipeline {
         stage('Build') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/main'  // Ajusta según el formato de GIT_BRANCH
+                    return env.GIT_BRANCH == 'origin/Staging'  // Solo ejecuta este stage en la rama 'Staging'
                 }
             }
             steps {
-                echo 'Building...'
+                echo 'Building in Staging...'
             }
         }
         stage('Tests') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/main'  // Ajusta según el formato de GIT_BRANCH
+                    return env.GIT_BRANCH == 'origin/Testing'  // Solo ejecuta este stage en la rama 'Testing'
                 }
             }
             steps {
-                echo 'Testing...'
+                echo 'Running tests in Testing...'
             }
         }
         stage('Deploy') {
             when {
                 expression {
-                    return env.GIT_BRANCH == 'origin/main'  // Solo ejecuta si es main
+                    return env.GIT_BRANCH == 'origin/main'  // Solo ejecuta este stage en la rama 'main'
                 }
             }
             steps {
                 echo 'Deploying in main...'
                 sh 'echo "Se hizo un cambio en la rama main a las $(date)" >> /var/jenkins_home/jenkins_pipeline.log'
-                sh 'echo "GIT_BRANCH: ${env.GIT_BRANCH}"  >> /var/jenkins_home/jenkins_pipeline.log'  // Nombre de la rama
-                sh 'echo "GIT_COMMIT: ${env.GIT_COMMIT}"  >> /var/jenkins_home/jenkins_pipeline.log'   // Hash del commit actual
+                sh 'echo "GIT_BRANCH: ${env.GIT_BRANCH}" >> /var/jenkins_home/jenkins_pipeline.log'
+                sh 'echo "GIT_COMMIT: ${env.GIT_COMMIT}" >> /var/jenkins_home/jenkins_pipeline.log'
             }
         }
     }
